@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwcq3bafcayeq"]
+
+[ext_resource type="Texture2D" uid="uid://b0a3ku3mppim5" path="res://mystic_woods_free_2.1/menubg.png" id="1_gmqvw"]
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_qw5sc"]
+
+[node name="mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qw5sc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -88.0
+offset_top = -8.0
+offset_right = 1277.0
+offset_bottom = 698.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_gmqvw")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.235
+anchor_right = -0.157
+offset_left = 716.775
+offset_top = 464.0
+offset_right = 1124.22
+offset_bottom = 678.0
+grow_horizontal = 2
+scale = Vector2(1.403, 0.682)
+pivot_offset = Vector2(0.035, 0.4)
+focus_neighbor_top = NodePath("StartButton")
+focus_neighbor_bottom = NodePath("QuitButton")
+
+[node name="StartButton" type="Button" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+vertical_icon_alignment = 0
+
+[node name="QuitButton" type="Button" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
