@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwcq3bafcayeq"]
 
-[ext_resource type="Texture2D" uid="uid://b0a3ku3mppim5" path="res://mystic_woods_free_2.1/menubg.png" id="1_gmqvw"]
+[ext_resource type="Texture2D" uid="uid://b0a3ku3mppim5" path="res://art/menubg.png" id="1_gmqvw"]
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_qw5sc"]
 
 [node name="mainmenu" type="Control"]

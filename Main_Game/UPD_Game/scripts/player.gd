@@ -1,12 +1,19 @@
 extends CharacterBody2D
 
+class_name Player
+
+signal health_changed
+
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
-var health = 500
+# var health = 500
 var player_alive = true
 
-var attack_ip = false
+@export var max_health = 100
+@onready var current_health: int = max_health
 
+
+var attack_ip = false
 const speed = 100
 var current_dir = "none"
 
@@ -19,9 +26,9 @@ func _physics_process(delta):
 	attack()
 	current_camera()
 	
-	if health <= 0:
+	if current_health <= 0:
 		player_alive = false #respawn
-		health = 0
+		current_health = 0
 		print("player has been killed")
 		self.queue_free()
 
@@ -99,10 +106,11 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown == true:
-		health = health - 20
+		current_health = current_health - 20
+		health_changed.emit()
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
-		print(health)
+		print(current_health)
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
@@ -128,9 +136,6 @@ func attack():
 			$AnimatedSprite2D.play("back_attack")
 			$deal_attack_timer.start()
 			
-			
-
-
 func _on_deal_attack_timer_timeout():
 	$deal_attack_timer.stop()
 	Global.player_current_attack = false 
