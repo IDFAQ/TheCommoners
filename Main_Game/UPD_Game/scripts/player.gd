@@ -18,6 +18,7 @@ var roll_ip = false
 
 
 const speed = 100
+const diag_speed = 80
 var current_dir = "none"
 
 func _ready():
@@ -59,23 +60,23 @@ func player_movement(delta):
 	elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
 		current_dir = "down_right"
 		play_anim(1)
-		velocity.y = speed
-		velocity.x = speed
+		velocity.y = diag_speed
+		velocity.x = diag_speed
 	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_down"):
 		current_dir = "down_left"
 		play_anim(1)
-		velocity.y = speed
-		velocity.x = -speed
+		velocity.y = diag_speed
+		velocity.x = -diag_speed
 	elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
 		current_dir = "up_right"
 		play_anim(1)
-		velocity.y = -speed
-		velocity.x = speed
+		velocity.y = -diag_speed
+		velocity.x = diag_speed
 	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
 		current_dir = "up_left"
 		play_anim(1)
-		velocity.y = -speed
-		velocity.x = -speed
+		velocity.y = -diag_speed
+		velocity.x = -diag_speed
 	else:
 		play_anim(0)
 		velocity.x = 0
