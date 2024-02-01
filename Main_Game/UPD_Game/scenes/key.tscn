@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bln88cgb2o7rm"]
 
 [ext_resource type="Script" path="res://scripts/key.gd" id="1_ch8at"]
-[ext_resource type="Texture2D" uid="uid://bcwea12s67tgk" path="res://mystic_woods_free_2.1/sprites/objects/Key.png" id="2_ysfih"]
+[ext_resource type="Texture2D" uid="uid://bcwea12s67tgk" path="res://art/sprites/objects/Key.png" id="2_ysfih"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oewt4"]
 

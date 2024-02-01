@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://btora7mwebya4"]
 
-[ext_resource type="Texture2D" uid="uid://ccnp2djex2ldy" path="res://mystic_woods_free_2.1/sprites/tilesets/terrain/plains.png" id="1_4f1v1"]
+[ext_resource type="Texture2D" uid="uid://ccnp2djex2ldy" path="res://art/sprites/tilesets/terrain/plains.png" id="1_4f1v1"]
 [ext_resource type="Script" path="res://scripts/cliff_side.gd" id="1_r5g21"]
-[ext_resource type="Texture2D" uid="uid://c7lyhcfin6diq" path="res://mystic_woods_free_2.1/sprites/tilesets/walls/Dungeon_Door.png" id="2_ew2xf"]
-[ext_resource type="Texture2D" uid="uid://dc0f06quidkxi" path="res://mystic_woods_free_2.1/sprites/tilesets/floors/grass.png" id="2_rgbc1"]
-[ext_resource type="Texture2D" uid="uid://b2cagibyx13r3" path="res://mystic_woods_free_2.1/sprites/objects/objects.png" id="3_2aude"]
+[ext_resource type="Texture2D" uid="uid://c7lyhcfin6diq" path="res://art/sprites/tilesets/walls/Dungeon_Door.png" id="2_ew2xf"]
+[ext_resource type="Texture2D" uid="uid://dc0f06quidkxi" path="res://art/sprites/tilesets/floors/grass.png" id="2_rgbc1"]
+[ext_resource type="Texture2D" uid="uid://b2cagibyx13r3" path="res://art/sprites/objects/objects.png" id="3_2aude"]
 [ext_resource type="PackedScene" uid="uid://cavvgwt012mtl" path="res://scenes/player.tscn" id="4_iuhr2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_buku5"]
