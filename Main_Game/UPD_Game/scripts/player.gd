@@ -35,6 +35,30 @@ func _physics_process(delta):
 		current_health = 0
 		print("player has been killed")
 		self.queue_free()
+		
+func _process(delta):
+	# Get the global mouse position
+	var mouse_position = get_global_mouse_position()
+
+	# Get the position of the character
+	var character_position = global_position
+
+	# Calculate the angle between the character and the mouse
+	var angle = atan2(mouse_position.y - character_position.y, mouse_position.x - character_position.x)
+
+	# Determine the animation based on the angle
+	if Input.is_action_just_pressed("attack"):
+		if angle < -PI/4 and angle >= -3*PI/4:
+			current_dir = "up";
+		elif angle < 3*PI/4 and angle >= PI/4:
+			current_dir = "down";
+		elif angle < PI/4 and angle >= -PI/4:
+			current_dir = "right";
+		else:
+			current_dir = "left";
+	
+	move_and_slide()
+	attack()
 
 func player_movement(delta):
 	if Input.is_action_pressed("ui_right") and not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up"):
