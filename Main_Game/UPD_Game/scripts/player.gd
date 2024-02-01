@@ -9,8 +9,13 @@ var enemy_attack_cooldown = true
 # var health = 500
 var player_alive = true
 
+<<<<<<< Updated upstream
 @export var max_health = 100
 @onready var current_health: int = max_health
+=======
+var attack_ip = false
+var roll_ip = false
+>>>>>>> Stashed changes
 
 
 var attack_ip = false
@@ -33,26 +38,46 @@ func _physics_process(delta):
 		self.queue_free()
 
 func player_movement(delta):
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up"):
 		current_dir = "right"
 		play_anim(1)
 		velocity.x = speed
 		velocity.y = 0
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up"):
 		current_dir = "left"
 		play_anim(1)
 		velocity.x = -speed
 		velocity.y = 0
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
 		current_dir = "down"
 		play_anim(1)
 		velocity.y = speed
 		velocity.x = 0
-	elif Input.is_action_pressed("ui_up"):
+	elif Input.is_action_pressed("ui_up") and not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
 		current_dir = "up"
 		play_anim(1)
 		velocity.y = -speed
 		velocity.x = 0
+	elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
+		current_dir = "down_right"
+		play_anim(1)
+		velocity.y = speed
+		velocity.x = speed
+	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_down"):
+		current_dir = "down_left"
+		play_anim(1)
+		velocity.y = speed
+		velocity.x = -speed
+	elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
+		current_dir = "up_right"
+		play_anim(1)
+		velocity.y = -speed
+		velocity.x = speed
+	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
+		current_dir = "up_left"
+		play_anim(1)
+		velocity.y = -speed
+		velocity.x = -speed
 	else:
 		play_anim(0)
 		velocity.x = 0
@@ -60,37 +85,41 @@ func player_movement(delta):
 	
 	move_and_slide()
 
+
+	
+	
+
 func play_anim(movement):
 	var dir = current_dir
 	var anim = $AnimatedSprite2D
 	
-	if dir == "right":
+	if dir == "right" or dir == "down_right" or dir == "up_right":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
-			if attack_ip == false:
+			if attack_ip == false and roll_ip == false:
 				anim.play("side_idle")
-	if dir == "left":
+	if dir == "left" or dir == "down_left" or dir == "up_left":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
-			if attack_ip == false:
+			if attack_ip == false and roll_ip == false:
 				anim.play("side_idle")
 	if dir == "up":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("back_walk")
 		elif movement == 0:
-			if attack_ip == false:
+			if attack_ip == false and roll_ip == false:
 				anim.play("back_idle")
 	if dir == "down":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("front_walk")
 		elif movement == 0:
-			if attack_ip == false:
+			if attack_ip == false and roll_ip == false:
 				anim.play("front_idle")
 
 func player():
