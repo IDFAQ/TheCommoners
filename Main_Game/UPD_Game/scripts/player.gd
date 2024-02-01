@@ -9,7 +9,7 @@ var enemy_attack_cooldown = true
 var player_alive = true
 
 
-@export var max_health = 100
+@export var max_health = 500
 @onready var current_health: int = max_health
 
 var attack_ip = false
