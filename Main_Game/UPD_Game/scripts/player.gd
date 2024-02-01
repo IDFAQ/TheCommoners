@@ -8,15 +8,15 @@ var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var player_alive = true
 
-<<<<<<< Updated upstream
+
 @export var max_health = 100
 @onready var current_health: int = max_health
-=======
-var attack_ip = false
-var roll_ip = false
->>>>>>> Stashed changes
 
 var attack_ip = false
+var roll_ip = false
+
+
+
 const speed = 100
 var current_dir = "none"
 
