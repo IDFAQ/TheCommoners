@@ -17,8 +17,8 @@ var roll_ip = false
 
 
 
-const speed = 100
-const diag_speed = 80
+const speed = 70
+const diag_speed = 50
 var current_dir = "none"
 
 func _ready():
