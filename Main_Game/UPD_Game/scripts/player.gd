@@ -5,9 +5,22 @@ var enemy_attack_cooldown = true
 var health = 500
 var player_alive = true
 
+<<<<<<< Updated upstream
 var attack_ip = false
 
 const speed = 100
+=======
+@export var max_health = 500
+@onready var current_health: int = max_health
+
+var attack_ip = false
+var roll_ip = false
+
+const ACCELERATION = 500
+const MAX_SPEED = 60
+const FRICTION = 500
+
+>>>>>>> Stashed changes
 var current_dir = "none"
 
 func _ready():
@@ -15,9 +28,9 @@ func _ready():
 
 func _physics_process(delta):
 	player_movement(delta)
-	enemy_attack()
 	attack()
 	current_camera()
+	enemy_attack()
 	
 	if health <= 0:
 		player_alive = false #respawn
@@ -26,6 +39,7 @@ func _physics_process(delta):
 		self.queue_free()
 
 func player_movement(delta):
+<<<<<<< Updated upstream
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
@@ -52,6 +66,19 @@ func player_movement(delta):
 		velocity.y = 0
 	
 	move_and_slide()
+=======
+	var input_vector = Vector2.ZERO
+	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	input_vector = input_vector.normalized()	
+
+	if input_vector != Vector2.ZERO:
+		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+	
+	move_and_collide(velocity * delta)
+>>>>>>> Stashed changes
 
 func play_anim(movement):
 	var dir = current_dir
