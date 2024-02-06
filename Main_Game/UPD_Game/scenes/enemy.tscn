@@ -136,6 +136,8 @@ radius = 5.0
 radius = 12.0
 
 [node name="enemy" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 3
 script = ExtResource("1_44fk8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

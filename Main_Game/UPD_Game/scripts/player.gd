@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
+
 class_name Player
 
 signal health_changed
+
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
@@ -17,8 +19,8 @@ var roll_ip = false
 
 
 
-const speed = 70
-const diag_speed = 50
+const speed = 55
+const diag_speed = 40
 var current_dir = "none"
 
 func _ready():
