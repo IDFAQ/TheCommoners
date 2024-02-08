@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmctpk32fqw52"]
+[gd_scene load_steps=13 format=3 uid="uid://cmctpk32fqw52"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_hlw7r"]
 [ext_resource type="Texture2D" uid="uid://ccnp2djex2ldy" path="res://mystic_woods_free_2.1/sprites/tilesets/terrain/plains.png" id="1_o42de"]
@@ -208,6 +208,9 @@ sources/5 = SubResource("TileSetAtlasSource_uqofd")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vg3pc"]
 size = Vector2(52, 35)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7wi40"]
+radius = 10.172
+
 [node name="world" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(-1, 0)
@@ -228,7 +231,7 @@ layer_2/y_sort_enabled = true
 layer_2/tile_data = PackedInt32Array(655362, 5, 5, 655368, 5, 5, 655374, 5, 5, 655380, 5, 5, 655386, 5, 5, 196613, 524293, 6, 196616, 524293, 6, 196619, 524293, 6, 196622, 524293, 6, 196625, 524293, 6, 196628, 524293, 6, 196631, 524293, 6, 196634, 524293, 6, 65539, 5, 0, 65538, 327685, 0, 786444, 5, 1, 196623, 5, 1, 65546, 5, 1, 786455, 5, 1, 65560, 5, 1, 524313, 5, 1, 524299, 393221, 7, 589847, 393221, 7, 20, 393221, 7, 65541, 393221, 7, 786437, 655365, 7, 65549, 655365, 7)
 
 [node name="player" parent="." instance=ExtResource("4_c1kx2")]
-position = Vector2(42, 50)
+position = Vector2(20, 52)
 
 [node name="enemy" parent="." instance=ExtResource("5_y511w")]
 position = Vector2(114, 46)
@@ -253,5 +256,16 @@ polygon = PackedVector2Array(20, -7, 261, -4, 262, 21, 268, 28, 294, 27, 295, 40
 position = Vector2(509, -21)
 shape = SubResource("RectangleShape2D_vg3pc")
 
+[node name="sign1" type="Area2D" parent="."]
+position = Vector2(59.2941, 17.3677)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sign1"]
+position = Vector2(-9.2941, 23.6323)
+scale = Vector2(1.8, 1.28571)
+shape = SubResource("CircleShape2D_7wi40")
+
 [connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]
+[connection signal="area_entered" from="sign1" to="player" method="_on_sign_1_area_entered"]
+[connection signal="body_entered" from="sign1" to="player" method="_on_sign_1_body_entered"]
+[connection signal="mouse_entered" from="sign1" to="player" method="_on_sign_1_mouse_entered"]
