@@ -72,13 +72,13 @@ func player_movement(delta):
 	if input_vector != Vector2.ZERO:
 		if input_vector.x > 0:
 			$AnimatedSprite2D.flip_h = false
-			$AnimatedSprite2D.play("side_walk")
+			$AnimatedSprite2D.play("front_walk")
 		else:
 			$AnimatedSprite2D.flip_h = true
-			$AnimatedSprite2D.play("side_walk")
+			$AnimatedSprite2D.play("front_walk")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		$AnimatedSprite2D.play("side_idle")
+		$AnimatedSprite2D.play("front_idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	move_and_collide(velocity * delta)
