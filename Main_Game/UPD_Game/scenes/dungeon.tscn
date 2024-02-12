@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dvi45e7bgjbce"]
+[gd_scene load_steps=34 format=3 uid="uid://dvi45e7bgjbce"]
 
 [ext_resource type="Texture2D" uid="uid://csssjunkmtwvn" path="res://art/sprites/tilesets/floors/dungeon_floor.png" id="1_cqitk"]
 [ext_resource type="Script" path="res://scripts/dungeon.gd" id="1_cxkjc"]
@@ -423,6 +423,58 @@ size = Vector2(31, 23)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8do2"]
 size = Vector2(27, 22)
 
+[sub_resource type="Animation" id="Animation_5j7r2"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0eujk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v2b1a"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7q7v6"]
+_data = {
+"RESET": SubResource("Animation_0eujk"),
+"fade_in": SubResource("Animation_v2b1a"),
+"fade_out": SubResource("Animation_5j7r2")
+}
+
 [node name="Dungeon" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(78, 46)
@@ -500,6 +552,18 @@ shape = SubResource("RectangleShape2D_ykej2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(144.5, 21)
 shape = SubResource("RectangleShape2D_a8do2")
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7q7v6")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 5
+offset_right = 556.0
+offset_bottom = 272.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="body_entered" from="chest/chest_zone" to="key" method="_on_chest_zone_body_entered"]
 [connection signal="body_exited" from="chest/chest_zone" to="key" method="_on_chest_zone_body_exited"]
