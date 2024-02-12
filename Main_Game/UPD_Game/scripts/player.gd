@@ -19,8 +19,9 @@ var roll_ip = false
 
 
 
-const speed = 55
-const diag_speed = 40
+const ACCELERATION = 500
+const MAX_SPEED = 60
+const FRICTION = 500
 var current_dir = "none"
 
 func _ready():
@@ -63,56 +64,24 @@ func _process(delta):
 	attack()
 
 func player_movement(delta):
-	if Input.is_action_pressed("ui_right") and not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up"):
-		current_dir = "right"
-		play_anim(1)
-		velocity.x = speed
-		velocity.y = 0
-	elif Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up"):
-		current_dir = "left"
-		play_anim(1)
-		velocity.x = -speed
-		velocity.y = 0
-	elif Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
-		current_dir = "down"
-		play_anim(1)
-		velocity.y = speed
-		velocity.x = 0
-	elif Input.is_action_pressed("ui_up") and not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
-		current_dir = "up"
-		play_anim(1)
-		velocity.y = -speed
-		velocity.x = 0
-	elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
-		current_dir = "down_right"
-		play_anim(1)
-		velocity.y = diag_speed
-		velocity.x = diag_speed
-	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_down"):
-		current_dir = "down_left"
-		play_anim(1)
-		velocity.y = diag_speed
-		velocity.x = -diag_speed
-	elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
-		current_dir = "up_right"
-		play_anim(1)
-		velocity.y = -diag_speed
-		velocity.x = diag_speed
-	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
-		current_dir = "up_left"
-		play_anim(1)
-		velocity.y = -diag_speed
-		velocity.x = -diag_speed
+	var input_vector = Vector2.ZERO
+	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	input_vector = input_vector.normalized()	
+
+	if input_vector != Vector2.ZERO:
+		if input_vector.x > 0:
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("front_walk")
+		else:
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("front_walk")
+		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		play_anim(0)
-		velocity.x = 0
-		velocity.y = 0
+		$AnimatedSprite2D.play("front_idle")
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
-	move_and_slide()
-
-
-	
-	
+	move_and_collide(velocity * delta)
 
 func play_anim(movement):
 	var dir = current_dir
