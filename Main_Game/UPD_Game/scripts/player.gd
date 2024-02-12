@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
+
 class_name Player
 
 signal health_changed
+
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
@@ -17,8 +19,8 @@ var roll_ip = false
 
 
 
-const speed = 100
-const diag_speed = 80
+const speed = 55
+const diag_speed = 40
 var current_dir = "none"
 
 func _ready():
@@ -207,3 +209,24 @@ func current_camera():
 		$dungeon_camera.enabled = true
 		$cliffside_camera.enabled = false
 
+
+
+func _on_sign_1_body_entered(body):
+	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("attack"):
+		print("Interact button pressed")
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/sign1.dialogue"), "start")
+		return
+
+
+func _on_sign_1_mouse_entered():
+	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("attack"):
+		print("Interact button pressed")
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/sign1.dialogue"), "start")
+		return
+
+
+func _on_sign_1_area_entered(area):
+		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("attack"):
+			print("Interact button pressed")
+			DialogueManager.show_example_dialogue_balloon(load("res://dialogue/sign1.dialogue"), "start")
+			return
