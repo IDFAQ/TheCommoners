@@ -841,9 +841,7 @@ position = Vector2(2.08165e-12, -12)
 sprite_frames = SubResource("SpriteFrames_1vmot")
 animation = &"front_walk"
 <<<<<<< HEAD
-
 frame_progress = 0.890734
-
 =======
 >>>>>>> 9a9f43ace3545efca39983b09f025399cc4179cd
 
