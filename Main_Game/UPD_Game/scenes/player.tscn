@@ -1,10 +1,12 @@
-[gd_scene load_steps=60 format=3 uid="uid://cavvgwt012mtl"]
+[gd_scene load_steps=62 format=3 uid="uid://cavvgwt012mtl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dwp2h"]
 [ext_resource type="Texture2D" uid="uid://cw5v0ep2ccnfc" path="res://art/sprites/characters/player.png" id="2_2qhdt"]
+[ext_resource type="Script" path="res://scripts/CanvasLayer.gd" id="3_fo8tb"]
 [ext_resource type="Texture2D" uid="uid://c8bs2c5uf283o" path="res://art/sprites/UI/healthbarUnder.png" id="4_i7eyx"]
 [ext_resource type="Script" path="res://scripts/health_bar.gd" id="5_0rqn2"]
 [ext_resource type="Texture2D" uid="uid://dacxifr68wgfm" path="res://art/sprites/UI/healthbarProgress.png" id="5_jgh1r"]
+[ext_resource type="PackedScene" uid="uid://xvv32af45fmh" path="res://scenes/inventory_gui.tscn" id="7_dng1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ct7m5"]
 atlas = ExtResource("2_2qhdt")
@@ -473,6 +475,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("3_fo8tb")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
 offset_right = 40.0
@@ -481,6 +484,19 @@ texture_under = ExtResource("4_i7eyx")
 texture_progress = ExtResource("5_jgh1r")
 script = ExtResource("5_0rqn2")
 player = NodePath("../..")
+
+[node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource("7_dng1f")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = -41.0
+offset_right = 66.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
