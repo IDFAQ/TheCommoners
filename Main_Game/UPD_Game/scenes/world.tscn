@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmctpk32fqw52"]
+[gd_scene load_steps=15 format=3 uid="uid://cmctpk32fqw52"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_hlw7r"]
 [ext_resource type="Texture2D" uid="uid://ccnp2djex2ldy" path="res://art/sprites/tilesets/terrain/plains.png" id="1_o42de"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b2cagibyx13r3" path="res://art/sprites/objects/objects.png" id="3_xujx6"]
 [ext_resource type="PackedScene" uid="uid://cavvgwt012mtl" path="res://scenes/player.tscn" id="4_c1kx2"]
 [ext_resource type="PackedScene" uid="uid://b7ohxq3s41ywq" path="res://scenes/enemy.tscn" id="5_y511w"]
+[ext_resource type="Script" path="res://scripts/CanvasLayer.gd" id="7_b85v7"]
+[ext_resource type="PackedScene" uid="uid://xvv32af45fmh" path="res://scenes/inventory_gui.tscn" id="7_lcoyk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_slxpk"]
 texture = ExtResource("1_o42de")
@@ -263,6 +265,22 @@ position = Vector2(59.2941, 17.3677)
 position = Vector2(-9.2941, 23.6323)
 scale = Vector2(1.8, 1.28571)
 shape = SubResource("CircleShape2D_7wi40")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("7_b85v7")
+
+[node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource("7_lcoyk")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = -41.0
+offset_right = 66.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]

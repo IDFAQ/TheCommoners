@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dwp2h"]
 [ext_resource type="Texture2D" uid="uid://cw5v0ep2ccnfc" path="res://art/sprites/characters/player.png" id="2_2qhdt"]
-[ext_resource type="Script" path="res://scenes/health_bar.gd" id="3_ktihw"]
 [ext_resource type="Texture2D" uid="uid://c8bs2c5uf283o" path="res://art/sprites/UI/healthbarUnder.png" id="4_i7eyx"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="5_0rqn2"]
 [ext_resource type="Texture2D" uid="uid://dacxifr68wgfm" path="res://art/sprites/UI/healthbarProgress.png" id="5_jgh1r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ct7m5"]
@@ -479,7 +479,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture_under = ExtResource("4_i7eyx")
 texture_progress = ExtResource("5_jgh1r")
-script = ExtResource("3_ktihw")
+script = ExtResource("5_0rqn2")
 player = NodePath("../..")
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
