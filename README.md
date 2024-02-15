@@ -1,2 +1,2 @@
-# TheCommoners Game Repositary
+# TheCommoners Game Repository
 For AC AM BM SL PN
